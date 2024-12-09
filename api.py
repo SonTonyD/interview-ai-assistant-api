@@ -3,7 +3,7 @@ from mangum import Mangum
 from pydantic import BaseModel
 from typing import List, Optional
 from fastapi.middleware.cors import CORSMiddleware
-from model import QuestionAnswer, InterviewRecord, ProfileInfo
+from model import QuestionAnswer, InterviewRecord, ProfileInfo, FeedbackRequest
 from typing import List
 
 import main as main_program
@@ -27,9 +27,9 @@ async def root():
     return {"message": "Job Interview AI Assistant"}
 
 @app.post("/interview", response_model=InterviewRecord)
-async def generate_feedback(record: InterviewRecord, profile: ProfileInfo):
+async def generate_feedback(feedbackRequest: FeedbackRequest):
 
-    newRecord: InterviewRecord = main_program.generateFeedback(record, profile);
+    newRecord: InterviewRecord = main_program.generateFeedback(feedbackRequest.record, feedbackRequest.profile);
     return newRecord
 
 @app.post("/question", response_model=List[str])

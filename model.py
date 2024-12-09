@@ -19,3 +19,7 @@ class ProfileInfo(BaseModel):
     poste: str
     objectif_entretien: str
     offre_emploi: str
+
+class FeedbackRequest(BaseModel):
+    record: InterviewRecord
+    profile: ProfileInfo

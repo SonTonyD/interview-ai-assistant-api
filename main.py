@@ -29,7 +29,7 @@ def test(name) :
         stream=True
     )
 
-    result = "";
+    result = ""; 
 
     for chunk in chat_completion:
         result += str(chunk.choices[0].delta.content)
@@ -49,6 +49,7 @@ def extract_and_parse_json(llm_response: str) -> list[str]:
     """
     try:
         # Regex pour extraire un JSON valide de type liste
+
         json_match = re.search(r'\[.*\]', llm_response, re.DOTALL)
         if not json_match:
             raise ValueError("Aucun objet JSON valide trouvé dans la réponse.")
@@ -98,6 +99,7 @@ def promptToLLM(prompt: str):
     return result
 
 def generateQuestions(profile: ProfileInfo) :
+    print(profile)
     prompt = f"""
     Voici un profil utilisateur pour lequel je souhaite préparer un entretien d'embauche.
 
@@ -113,13 +115,10 @@ def generateQuestions(profile: ProfileInfo) :
     Sur la base des informations ci-dessus, génère une liste de 20 questions d'entretien que cette personne pourrait rencontrer.  
     - La liste doit être composée de questions techniques (pertinentes pour le poste et le secteur) et de questions personnelles ou comportementales.  
     - Veille à varier les types de questions pour couvrir différents aspects de l'entretien (techniques, expériences, soft skills, etc.).  
-    - Classe les questions en deux catégories :  
-    - **Questions techniques**  
-    - **Questions personnelles et comportementales**  
 
     Rends les questions claires et directes, en adaptant leur niveau de complexité au contexte du poste visé.
 
-    Retourne les questions sous forme de liste JSON comme suit :  
+    Retourne les questions en français sous forme de liste JSON comme suit :  
     [
     "Question 1",
     "Question 2",
@@ -128,6 +127,7 @@ def generateQuestions(profile: ProfileInfo) :
     """
 
     llm_response = promptToLLM(prompt)
+    print(llm_response)
     result = extract_and_parse_json(llm_response)
 
     return result
@@ -155,10 +155,11 @@ def generateFeedback(record: InterviewRecord, profile: ProfileInfo) :
 
         2. Propose une ou plusieurs reformulations plus adaptées en gardant à l'esprit les attentes pour ce poste et ce secteur.
 
-        Réponds de manière concise et professionnelle.
+        Réponds de manière concise et professionnelle en français.
 
         """
 
         llm_response = promptToLLM(prompt)
+        print(llm_response)
         questionAnswer.feedback = llm_response
     return record
