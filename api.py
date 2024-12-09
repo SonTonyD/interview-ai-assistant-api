@@ -27,9 +27,9 @@ async def root():
     return {"message": "Job Interview AI Assistant"}
 
 @app.post("/interview", response_model=InterviewRecord)
-async def generate_feedback(record: InterviewRecord):
+async def generate_feedback(record: InterviewRecord, profile: ProfileInfo):
 
-    newRecord: InterviewRecord = main_program.generateFeedback(record);
+    newRecord: InterviewRecord = main_program.generateFeedback(record, profile);
     return newRecord
 
 @app.post("/question", response_model=List[str])
