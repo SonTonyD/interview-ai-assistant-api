@@ -112,7 +112,7 @@ def generateQuestions(profile: ProfileInfo) :
     {profile.offre_emploi}
 
     **Tâche** :  
-    Sur la base des informations ci-dessus, génère une liste de 20 questions d'entretien que cette personne pourrait rencontrer.  
+    Sur la base des informations ci-dessus, génère une liste de 10 questions d'entretien que cette personne pourrait rencontrer.  
     - La liste doit être composée de questions techniques (pertinentes pour le poste et le secteur) et de questions personnelles ou comportementales.  
     - Veille à varier les types de questions pour couvrir différents aspects de l'entretien (techniques, expériences, soft skills, etc.).  
 
