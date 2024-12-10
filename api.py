@@ -15,7 +15,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:4200",  # URL de votre application Angular
         "http://127.0.0.1:4200",
-        "https://prototype-ai-school-frontend.vercel.app",  # Ajoutez aussi cette variante
+        "https://interview-ai-assistant-1w8p.vercel.app",  # Ajoutez aussi cette variante
     ],
     allow_credentials=True,
     allow_methods=["*"],  # Autorise toutes les méthodes HTTP
